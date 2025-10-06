@@ -19,6 +19,7 @@ async function getNotes() {
   const notes = await fs
     .readFile(dbPath, "utf-8")
     .then((data) => JSON.parse(data));
+
   return Array.isArray(notes) ? notes : [];
 }
 
@@ -35,8 +36,20 @@ async function removeNote(id) {
   console.log(chalk.bgRed("Note was removed"));
 }
 
+async function editNote(id, newContent) {
+  const notes = await getNotes();
+  notes.forEach((note) => {
+    if (note.id === id) {
+      note.title = newContent;
+    }
+  });
+  await fs.writeFile(dbPath, JSON.stringify(notes));
+}
+
 module.exports = {
   addNote,
+  getNotes,
   printNotes,
+  editNote,
   removeNote,
 };

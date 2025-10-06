@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+  
+</head>
+<body>
+
+    <% if (created) { %>
+        <div>
+            Note has been created
+        </div>
+    <% } %>
+
+    <div class="container" style=" display: flex; flex-direction: column; gap: 10px;  ">
+        <h1><%= title %></h1>
+        <form action="/" method="post" >
+            <input type="text" name="title" required>
+            <button type="submit">submit</button>
+        </form>
+        <div>
+            <ul style="width: auto; display: flex; flex-direction: column; gap: 10px ">
+                <% for (let i = 0; i < notes.length; i++) { %>
+                    <li style="display: flex; gap: 10px; align-items: center; justify-content: space-between; border: 1px solid black; padding: 15px;" >
+                        <span style="flex: 1;  " ><%= notes[i].title %></span>
+                         <button data-type="remove" data-id = <%= notes[i].id %>> remove</button>
+                         <button data-type="edit" data-id = <%= notes[i].id %>> edit</button>
+                    </li>
+                   
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <script src="/app.js"></script>
+</body>
+</html>
