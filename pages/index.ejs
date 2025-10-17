@@ -25,8 +25,11 @@
                 <% for (let i = 0; i < notes.length; i++) { %>
                     <li style="display: flex; gap: 10px; align-items: center; justify-content: space-between; border: 1px solid black; padding: 15px;" >
                         <span style="flex: 1;  " ><%= notes[i].title %></span>
+                        <span><%= notes[i].owner %></span>
+                        <%= if (notes[i].owner === userEmail) { %>
                          <button data-type="remove" data-id = <%= notes[i].id %>> remove</button>
                          <button data-type="edit" data-id = <%= notes[i].id %>> edit</button>
+                        <% } %>
                     </li>
                    
                 <% } %>
